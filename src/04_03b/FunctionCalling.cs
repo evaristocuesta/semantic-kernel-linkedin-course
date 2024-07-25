@@ -15,6 +15,7 @@ public static class FunctionCalling
     {
         ArgumentNullException.ThrowIfNullOrEmpty(model);
         ArgumentNullException.ThrowIfNullOrEmpty(apiKey);
+        ArgumentNullException.ThrowIfNullOrEmpty(prompt);
 
         var builder = Kernel.CreateBuilder();
 
