@@ -71,12 +71,6 @@ public class Researcher
             {{json reportForResearchTopic}}            
          ";
 
-        PromptExecutionSettings promptExecutionSettings = new OpenAIPromptExecutionSettings()
-        {
-            MaxTokens = 18000,
-            Temperature = 0.4,
-        };
-
         var HandlebarsSPromptFunction = kernel.CreateFunctionFromPrompt(
             new PromptTemplateConfig()
             {
@@ -86,7 +80,7 @@ public class Researcher
                   {
                       "default",
                       new OpenAIPromptExecutionSettings() {
-                          MaxTokens = 18000,
+                          MaxTokens = 4096,
                           Temperature = 0.3
                       }
                   }
@@ -103,7 +97,7 @@ public class Researcher
         var customHandlebarsPromptResult = await kernel.InvokeAsync(
                     HandlebarsSPromptFunction,
                     new() {
-                        { "webSearchResults", webSearchResults.Take(35) },
+                        { "webSearchResults", webSearchResults.Take(5) },
                         { "topicOfResearch", topicOfResearch }
                     }
                 );
@@ -192,7 +186,7 @@ public class Researcher
     {
         PromptExecutionSettings promptExecutionSettings = new OpenAIPromptExecutionSettings()
         {
-            MaxTokens = 8000,
+            MaxTokens = 4096,
             Temperature = 0.5,
         };
 
